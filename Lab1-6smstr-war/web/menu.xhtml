@@ -1,0 +1,28 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <div id="container_menu"> 
+        <ul id="nav"> 
+            <li><a href="real_home.xhtml">Главная</a></li> 
+            <li><a href="user_profile.xhtml">Кабинет</a></li>   
+            <c:if test="#{request.isUserInRole('manager')}"> 
+                <li><a href="addBook.xhtml">Добавить книгу</a></li>
+            </c:if>      
+
+            <c:if test="#{request.remoteUser!=null}">
+                <li>Здравствуйте, #{request.remoteUser}, {SFSB.getRole(request.remoteUser)}</li>
+                <li><h:form><h:commandLink action="#{LoginBean.logout()}" value="Выход"/></h:form></li>
+            </c:if> 
+
+        </ul> 
+    </div> 
+
+
+    <header id="header">
+        Электронная библиотека "Стеллаж"
+    </header>
+
+</ui:composition>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"          
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <link href="wrapper.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/component.css" />
+        <link href="style.css" rel="stylesheet" type="text/css" media="screen" /> 
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script> 
+        <script src="js/animate-bg.js" type="text/javascript"></script> 
+        <script src="js/scripts.js" type="text/javascript"></script> 
+        <script src="js/modernizr.custom.js"></script>
+        <title>StellAge</title>
+    </h:head>
+
+    <h:body>
+
+        <ui:include src="menu.xhtml" />
+
+
+        <h1 align="center">StellAge советует:</h1>
+        <table width="100%">
+            <td width="25%"></td>
+            <td width="50%">
+                <h:form>
+                    <div class="wrapper_body_2">
+                        <c:forEach var="book" items="#{mRequestBean.allAllBooks}">
+                            <c:if test="#{book.bookfile!=''}">
+                                <div class="cbm_wrap">
+                                    <h1><h:outputText value="#{book.name}"/></h1>                        
+                                    <img src="http://khalyavka.kiev.ua/my_documents_4.png"/>
+
+                                    <p> <h:outputText value="#{book.author}"/></p>
+                                    <p:commandButton action="#{sessionBean.setIdBookForReading(book.ID)}" value="Подробнее..."/>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                </h:form>
+            </td>
+            <td width="25%"></td>
+        </table>
+
+   
+    </h:body>
+
+
+
+
+</html>
+

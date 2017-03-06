@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"          
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <link href="wrapper.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/component.css" />
+        <link href="style.css" rel="stylesheet" type="text/css" media="screen" /> 
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script> 
+        <script src="js/animate-bg.js" type="text/javascript"></script> 
+        <script src="js/scripts.js" type="text/javascript"></script> 
+        <script src="js/modernizr.custom.js"></script>
+        <title>StellAge</title>
+    </h:head>
+    <body>
+        <ui:include src="menu.xhtml"/>
+        
+        <h:form>
+
+                <div class="cbm_comm"> 
+                    <p>Имя: #{request.remoteUser}</p>
+                    <p:outputLabel for="bookname" value="Название книги: "/>
+                    <p:inputText id="bookname" value="#{sessionBean.bookForRequest.name}"/>
+                    <p:message for="bookname"/>
+                    <p> </p>
+                    <p:outputLabel for="bookauthor" value="Автор книги: "/>
+                    <p:inputText id="bookauthor" value="#{sessionBean.bookForRequest.author}"/>
+                    <p:message for="bookauthor"/>                        
+
+                    <p:commandButton value="Добавить" action="#{sessionBean.addRequest()}"/>
+
+                </div>
+            </h:form>
+    </body>
+</html>
