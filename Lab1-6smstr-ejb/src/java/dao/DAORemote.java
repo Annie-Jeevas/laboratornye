@@ -6,8 +6,10 @@
 package dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.ejb.Remote;
-import model.User;
+import javax.naming.NamingException;
+import model.Book;
 
 /**
  *
@@ -18,6 +20,11 @@ public interface DAORemote {
     public void initConnection();
     public void connect();
     public void disconnect();
-    public User getUserByUsername(String name) throws SQLException;
-    public void Create(User u);
+    public ArrayList<Book> readAll() throws SQLException, ClassNotFoundException, NamingException;
+    public ArrayList<Book> read(Book v) throws SQLException, ClassNotFoundException;
+    public void update(Object o) throws SQLException;
+    public boolean delete(Book v) throws SQLException;
+    public boolean deleteAll() throws SQLException;
+    public boolean create(Book v) throws SQLException;
+    public double averageGrade(Book b) throws ClassNotFoundException, SQLException, NamingException;
 }

@@ -25,11 +25,14 @@
     </managed-bean>
     
     <navigation-rule>
-        <from-view-id>/real_home.xhtml</from-view-id>
-        <from-action>#{sessionBean.setIdBookForReading}</from-action>
+        <from-view-id>/real_home.xhtml</from-view-id>       
         <navigation-case>
             <from-outcome>case1</from-outcome>            
             <to-view-id>/book_description.xhtml</to-view-id>
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>grade</from-outcome>
+            <to-view-id>/BookGrade.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     

@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Анюта/Desktop/Универ/6%20СЕМЕСТР/РПС/Lab1-6smstr/Lab1-6smstr-war/src/java/Beans/SFSB.java</file>
+            <file>file:/C:/Users/Анюта/Desktop/Универ/6%20СЕМЕСТР/РПС/Lab1-6smstr/Lab1-6smstr-war/web/login.xhtml</file>
+            <file>file:/C:/Users/Анюта/Desktop/Универ/6%20СЕМЕСТР/РПС/Lab1-6smstr/Lab1-6smstr-war/web/WEB-INF/glassfish-web.xml</file>
+            <file>file:/C:/Users/Анюта/Desktop/Универ/6%20СЕМЕСТР/РПС/Lab1-6smstr/Lab1-6smstr-war/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Анюта/Desktop/Универ/6%20СЕМЕСТР/РПС/Lab1-6smstr/Lab1-6smstr-war/src/java/Beans/LoginBean.java</file>
         </group>
     </open-files>
 </project-private>

@@ -7,6 +7,7 @@ package Beans;
 
 import java.sql.SQLException;
 import javax.ejb.Local;
+import model.Book;
 
 /**
  *
@@ -14,5 +15,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface SFSBLocal {
-     public String getRole(String username) throws SQLException;
+     public double getBookMark ();
 }

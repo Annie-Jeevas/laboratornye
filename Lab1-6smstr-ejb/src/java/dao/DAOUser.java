@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -24,13 +25,14 @@ import model.*;
  */
 @Stateless
 
-public class DAOUser implements DAORemote {
+public class DAOUser {
 
     /**
      *
      * @author Анюта
      */
     static String tb_name = "roles";
+    @Resource(name = "jdbc/book")
     DataSource ds;
     Connection con;
     static Statement stmt;
@@ -39,7 +41,6 @@ public class DAOUser implements DAORemote {
     static Logger log = Logger.getLogger(DAOVisitor.class.getName());
 
     
-    @Override
     public void initConnection() {
         try {
             InitialContext ctx = new InitialContext();
@@ -50,7 +51,6 @@ public class DAOUser implements DAORemote {
     }
     
    
-    @Override
     @PostConstruct
     public void connect() {
         initConnection();
@@ -62,7 +62,6 @@ public class DAOUser implements DAORemote {
     }
     
   
-    @Override
     public void disconnect() {
         try {
             con.close();

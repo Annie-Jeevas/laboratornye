@@ -21,9 +21,9 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Анюта
  */
+
 public class SessionBean {
 
-    @EJB
     private DAOUser dAOUser;
 
     private Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
@@ -36,7 +36,8 @@ public class SessionBean {
     private Comment editComm;
     private ArrayList<Comment> Comments;
     private Comment addedComm;
-    private final DAOBook daob = new DAOBook();
+    @EJB
+    private DAORemote daob;
 
     public Principal getPrincipal() {
         return principal;
@@ -175,7 +176,6 @@ public class SessionBean {
             User user = dAOUser.getUserByUsername(username);
             Reader commentAuthor = daor.read(user.getId_visitor()).get(0);
             addedComm.setCommentAuthor(commentAuthor);
-            DAOBook daob = new DAOBook();
             Book b = new Book(idBookForReading);
             b = daob.read(b).get(0);
             addedComm.setCommentedBook(b);
@@ -190,8 +190,7 @@ public class SessionBean {
     }
 
     public String addBook() {
-        try {
-            DAOBook daob = new DAOBook();
+        try {            
             BookAdding.setBookfile(BookAdding.getName());
             BookAdding.setYear(new java.sql.Date(0,0,0));            
             daob.create(BookAdding);
@@ -205,7 +204,7 @@ public class SessionBean {
     public String addRequest() {
         try {
             Request newRequest = new Request();
-            DAOBook daob = new DAOBook();
+            
             BookForRequest.setGanre("Unknown");
             BookForRequest.setBookfile("");
 

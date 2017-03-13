@@ -23,13 +23,11 @@ import model.*;
  */
 public class MRequestBean {
 
-    @EJB
-    private DAORemote dAOUser;
+    
+    private DAOUser dAOUser = new DAOUser();
 
-    /**
-     * Creates a new instance of MRequestBean
-     */
-    private DAOBook daob;
+    @EJB
+    private DAORemote daob;
     private HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     private ArrayList<Book> allBooks;
     private Visitor newVisitor;
@@ -49,8 +47,7 @@ public class MRequestBean {
         this.allBooks = allBooks;
     }
 
-    public MRequestBean() {
-        daob = new DAOBook();
+    public MRequestBean() {        
         newVisitor = new Visitor();
     }
 

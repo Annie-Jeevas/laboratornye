@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,22 +14,64 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import javax.ejb.Stateless;
+import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.sql.DataSource;
 import model.*;
 
 /**
  *
  * @author Анюта
  */
-public class DAOBook extends Dao {
-
+@Stateless
+public class DAOBook implements DAORemote {
     static String tb_name = "book";
-
+    @Resource(name = "jdbc/book")
+    DataSource ds;
+    Connection con;
     static Statement stmt;
     static PreparedStatement pstmt;
     static ResultSet result;
-    static final Logger log = Logger.getLogger(DAOBook.class.getName());
+    static Logger log = Logger.getLogger(DAOBook.class.getName());
 
+    
+    @Override
+    public void initConnection() {
+        try {
+            InitialContext ctx = new InitialContext();
+            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/book");
+        } catch (NamingException ex) {
+            
+        }
+    }
+    
+   
+    @Override
+    @PostConstruct
+    public void connect() {
+        initConnection();
+        try {
+            con = ds.getConnection();
+        } catch (SQLException ex) {
+            
+        }
+    }
+    
+  
+    @Override
+    public void disconnect() {
+        try {
+            con.close();
+        } catch (SQLException ex) {
+            
+        }
+    }
+    
+
+    @Override
     public ArrayList<Book> readAll() throws SQLException, ClassNotFoundException, NamingException {
         connect();
         ArrayList<Book> vs = new ArrayList<>();
@@ -50,6 +93,7 @@ public class DAOBook extends Dao {
         return vs;
     }
 
+    @Override
     public ArrayList<Book> read(Book v) throws SQLException, ClassNotFoundException {
         connect();
         ArrayList<Book> vs = new ArrayList<Book>();
@@ -75,7 +119,8 @@ public class DAOBook extends Dao {
 
 
 
-public void update(Object o) throws SQLException {
+    @Override
+    public void update(Object o) throws SQLException {
         connect();
         try {
             Book book = (Book) o;
@@ -96,6 +141,7 @@ public void update(Object o) throws SQLException {
 
     }
 
+    @Override
     public boolean delete(Book v) throws SQLException {
         connect();
         try {
@@ -146,6 +192,7 @@ public void update(Object o) throws SQLException {
 
     }
 
+    @Override
     public boolean deleteAll() throws SQLException {
         connect();
         try {
@@ -161,6 +208,7 @@ public void update(Object o) throws SQLException {
             disconnect();
         }
     }
+    @Override
      public boolean create(Book v) throws SQLException {
 
         try {
@@ -183,6 +231,7 @@ public void update(Object o) throws SQLException {
         }
 
     }
+    @Override
     public double averageGrade(Book b) throws ClassNotFoundException, SQLException, NamingException {
         DAOComment daoc = new DAOComment();
         ArrayList<Comment> bookComms = daoc.read(b);

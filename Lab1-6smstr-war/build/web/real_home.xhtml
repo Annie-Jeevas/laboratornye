@@ -37,7 +37,8 @@
                                     <img src="http://khalyavka.kiev.ua/my_documents_4.png"/>
 
                                     <p> <h:outputText value="#{book.author}"/></p>
-                                    <p:commandButton action="#{sessionBean.setIdBookForReading(book.ID)}" value="Подробнее..."/>
+                                    <!--p:commandButton action="#{sessionBean.setIdBookForReading(book.ID)}" value="Подробнее..."/-->
+                                    <p:commandButton actionListener="#{SFSB.setIdBookForReading(book.ID)}" value="Оценка..."/>
                                 </div>
                             </c:if>
                         </c:forEach>

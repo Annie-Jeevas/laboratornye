@@ -10,16 +10,14 @@ import javax.servlet.http.HttpSession;
 import dao.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.EJB;
 import model.*;
 
 public class LoginBean {
     private final Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
     private String username;
-    private String role;
+    private String role;   
     
-    @EJB
-    private DAORemote dao;
+    private DAOUser dao = new DAOUser();
 
     public LoginBean() {
         if (principal != null) {

@@ -1,0 +1,44 @@
+<!-- 
+    Document   : my_books
+    Created on : 03.12.2016, 16:18:31
+    Author     : Анюта
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link href="wrapper.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/component.css" />
+        <link href="style.css" rel="stylesheet" type="text/css" media="screen" /> 
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script> 
+        <script src="js/animate-bg.js" type="text/javascript"></script> 
+        <script src="js/scripts.js" type="text/javascript"></script> 
+        <script src="js/modernizr.custom.js"></script>
+        <title>StellAge</title>
+    </h:head>
+
+    <h:body>
+        <ui:include src="menu.xhtml"/>
+        <h:form>
+            <p:dataTable var="allreq" value="#{mRequestBean.myRequests}"> 
+                    
+                    <p:column headerText="Книга">
+                        <h:outputText value="#{allreq.desiredBook.name}"/>
+                    </p:column>
+                    <p:column headerText="Автор книги">
+                        <h:outputText value="#{allreq.desiredBook.author}"/>
+                    </p:column>
+                    <p:column headerText="Статус">
+                        <h:outputText value="#{allreq.status}"/>
+                    </p:column>                    
+                </p:dataTable>
+             <p><a href="createReq.xhtml">Оставить заявку...</a></p>
+            </h:form>
+    </h:body>
+</html>

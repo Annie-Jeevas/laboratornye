@@ -8,13 +8,16 @@ package Beans;
 import dao.DAORemote;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
-import javax.ejb.LocalBean;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import model.User;
+import javax.naming.NamingException;
+import model.Book;
 
 /**
  *
@@ -24,16 +27,40 @@ import model.User;
 @Named(value = "SFSB")
 @Stateful
 public class SFSB implements Serializable, SFSBLocal {
-
-    @EJB
-    DAORemote daouser;
-    @EJB
-    Conversation cvs;
     
-    public String getRole(String username) throws SQLException{
-    cvs.begin();
-    User u = daouser.getUserByUsername(username);
-    cvs.end();
-    return u.getRole();
+    @Inject
+    private Conversation conv;
+    @EJB
+    private DAORemote daob;
+    private int idBookForReading;
+   
+
+    public int getIdBookForReading() {
+        return idBookForReading;
+    }
+    
+
+    public String setIdBookForReading(int idBookForReading) {
+        conv.begin();
+        this.idBookForReading = idBookForReading;
+        conv.end();
+        return "grade";
+    }
+
+    
+    @Override
+    public double getBookMark () {
+        conv.begin();
+        double mark = 0;
+        try {
+            Book b = daob.read(new Book(idBookForReading)).get(0);
+            mark = daob.averageGrade(b);
+        } catch (SQLException | ClassNotFoundException | NamingException ex) {
+            Logger.getLogger(SFSB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conv.end();
+            return mark;
+        }
+        
     }
 }

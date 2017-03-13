@@ -8,6 +8,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -19,6 +20,7 @@ import javax.sql.DataSource;
  */
 @Stateless
 public class Dao {
+    @Resource(name = "jdbc/book")
     DataSource ds;
     Connection con;
     

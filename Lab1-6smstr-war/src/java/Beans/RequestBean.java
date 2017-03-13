@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import dao.*;
+import javax.ejb.EJB;
 import javax.naming.NamingException;
 import model.*;
 import org.primefaces.event.RowEditEvent;
@@ -20,7 +21,8 @@ public class RequestBean {
 
     private FacesMessage msg;
     private ArrayList<Book> books;
-    private DAOBook dao;
+    @EJB
+    private DAORemote dao;
     private ArrayList<Book> selectedBooks;
 
     public ArrayList<Book> getBooks() {
@@ -44,7 +46,7 @@ public class RequestBean {
         this.msg = msg;
     }
 
-    public DAOBook getDao() {
+    public DAORemote getDao() {
         return dao;
     }
 
