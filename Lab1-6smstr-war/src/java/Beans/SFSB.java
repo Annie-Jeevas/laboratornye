@@ -16,6 +16,8 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.interceptor.Interceptor;
+import javax.interceptor.Interceptors;
 import javax.naming.NamingException;
 import model.Book;
 
@@ -50,6 +52,7 @@ public class SFSB implements Serializable, SFSBLocal {
 
     
     @Override
+    @Interceptors(SingletonBean.class)
     public double getBookMark () {
         conv.begin();
         double mark = 0;

@@ -40,7 +40,12 @@ public class SessionBean {
     private Comment addedComm;
     @EJB
     private DAORemote daob;
+    @EJB
+    private SingletonBean singleton;
 
+    public int getViews(){
+       return singleton.getCount();
+    }
     public Principal getPrincipal() {
         return principal;
     }
@@ -101,6 +106,7 @@ public class SessionBean {
         return "case1";
     }
 
+    
     public Book getReadingBook() throws SQLException, ClassNotFoundException {
         try {
             Book b = new Book(idBookForReading);

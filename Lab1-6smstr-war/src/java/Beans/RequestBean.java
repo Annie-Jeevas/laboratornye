@@ -15,7 +15,7 @@ import org.primefaces.event.RowEditEvent;
 
 /**
  *
- * @author Yakov
+ * @author Анюта
  */
 public class RequestBean {
 
