@@ -16,4 +16,5 @@ import model.Book;
 @Local
 public interface SFSBLocal {
      public double getBookMark ();
+     public String setIdBookForReading(int idBookForReading);
 }

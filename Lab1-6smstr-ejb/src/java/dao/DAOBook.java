@@ -236,10 +236,12 @@ public class DAOBook implements DAORemote {
         DAOComment daoc = new DAOComment();
         ArrayList<Comment> bookComms = daoc.read(b);
         double avr = 0;
-        for (Comment com : bookComms) {
+        int kolvo = 0;
+        for (Comment com : bookComms) { 
+            kolvo++;
             avr += com.getGrade();
-            avr = avr / 2;
+           
         }
-        return avr;
+        return (kolvo==0?avr:avr/kolvo);
     }
 }

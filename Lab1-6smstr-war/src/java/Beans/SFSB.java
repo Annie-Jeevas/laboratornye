@@ -40,6 +40,7 @@ public class SFSB implements Serializable, SFSBLocal {
     }
     
 
+    @Override
     public String setIdBookForReading(int idBookForReading) {
         conv.begin();
         this.idBookForReading = idBookForReading;

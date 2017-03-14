@@ -26,6 +26,8 @@ public class SessionBean {
 
     private DAOUser dAOUser;
 
+    @EJB
+    private SFSBLocal sfsb;
     private Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
     private HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     public int idBookForReading;
@@ -95,6 +97,7 @@ public class SessionBean {
 
     public String setIdBookForReading(int idBookForReading) {
         this.idBookForReading = idBookForReading;
+        sfsb.setIdBookForReading(idBookForReading);
         return "case1";
     }
 
@@ -108,6 +111,9 @@ public class SessionBean {
         } finally {
             return ReadingBook;
         }
+    }
+    public double getMark(){
+        return sfsb.getBookMark();
     }
 
     public void setReadingBook(Book ReadingBook) {
